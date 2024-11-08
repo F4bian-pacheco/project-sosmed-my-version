@@ -45,7 +45,7 @@ const Question = () => {
       );
       navigate("/choose");
     } else {
-      toast.success("Please select both date and time. (╥_╥)", {
+      toast.success("Por favor selecciona una hora y fecha. (╥_╥)", {
         style: {
           border: "1px solid pink",
           padding: "16px",
@@ -64,7 +64,7 @@ const Question = () => {
       <main className="d-flex justify-content-center">
         <section>
           <h1 className="text-center" style={{ color: pink }}>
-            When are you free ?
+            Cuando estarás libre?
           </h1>
           <section className="d-flex gap-3 pt-3">
             <DatePicker size="large" onChange={onChangeDate} />
@@ -77,7 +77,7 @@ const Question = () => {
               width: "100%",
               marginTop: "1.3rem",
             }}
-            text="(づ￣ ³￣)づ CLICK ME"
+            text="(づ￣ ³￣)づ HAZ CLICK"
             onClick={nextQuestion}
           />
           <div>

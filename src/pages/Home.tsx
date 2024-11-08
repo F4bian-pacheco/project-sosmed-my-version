@@ -9,12 +9,14 @@ import HeartButtonNo from "../components/HeartButtonNo/HeartButton";
 import { pink } from "../components/interfaces/HeartButton.interface";
 import { useNavigate } from "react-router";
 import "../components/styles/Home.styles.css";
+import useDeviceType from "../hooks/useDeviceType";
 
 const Home = () => {
   const navigate = useNavigate();
   const [imageIndex, setImageIndex] = useState(-1);
   const [buttonYes, setButtonYes] = useState(false);
   const [scale, setScale] = useState(1);
+  const deviceType = useDeviceType();
 
   useEffect(() => {
     localStorage.clear();
@@ -35,16 +37,47 @@ const Home = () => {
   const getMessage = () => {
     switch (imageIndex) {
       case 0:
-        return "Really? Youre breaking my heart!";
+        return "En serio? Estas rompiendo mi corazon!";
       case 1:
-        return "No Please, I'm begging you!";
+        return "No Por favor, te lo ruego!";
       case 2:
-        return "PLEASE";
+        return "POR FAVOR!!";
       default:
     }
   };
 
   const images = [img2, img3, img1];
+
+  const renderButton = () => {
+    if (deviceType === "mobile") {
+      return (
+        <HeartButton
+          style={{
+            borderRadius: '0.5rem',
+            scale: '0.8',
+            transition: 'transform 0.3s ease-in-out',
+            width: '80%',
+          }}
+          text="♡ HAZ CLICK ♡"
+          onClick={() => navigate('/date')}
+        />
+      );
+    } else {
+      return (
+        <HeartButton
+          style={{
+            borderRadius: '1rem',
+            scale: '1',
+            transition: 'transform 0.5s ease-in-out',
+            width: '100%',
+          }}
+          text="
+        ▂▃▄▅▆▇█▓▒░˗ˋˏ ♡ ˎˊ˗HAZ CLICK˗ˋˏ ♡ ˎˊ˗░▒▓█▇▆▅▄▃▂
+      "
+          onClick={() => navigate('/date')}
+        />)
+    }
+  }
 
   return (
     <Layout>
@@ -109,24 +142,13 @@ const Home = () => {
         </div>
         <h1 className="text-center" style={{ color: pink }}>
           {buttonYes
-            ? "YEAYYY!!! DONT GO ANYWHERE"
-            : "Would you like to go out with me for a date?"}
+            ? "SIIII!!! No te arrepentiras!"
+            : "Te gustaria salir conmigo a una cita?"}
         </h1>
         <section className="d-flex justify-content-center pt-5">
           <div className="d-flex justify-content-between gap-5">
             {buttonYes ? (
-              <HeartButton
-                style={{
-                  borderRadius: "1rem",
-                  scale: `${scale}`,
-                  transition: "transform 0.5s ease-in-out",
-                  width: "100%",
-                }}
-                text="
-           ▂▃▄▅▆▇█▓▒░˗ˋˏ ♡ ˎˊ˗CLICK ME˗ˋˏ ♡ ˎˊ˗░▒▓█▇▆▅▄▃▂
-                "
-                onClick={() => navigate("/date")}
-              />
+              renderButton()
             ) : (
               <>
                 <HeartButton

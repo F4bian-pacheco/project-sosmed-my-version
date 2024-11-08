@@ -41,7 +41,7 @@ const Date = () => {
   const getTitle = () => {
     switch (selectedCategory) {
       case "food":
-        return "What do you want to eat ?";
+        return "Que te gustaria comer?";
       case "movie":
         return "What movie do you want to watch ?";
       default:
@@ -165,11 +165,11 @@ const Date = () => {
       <HeartButton
         style={{
           width: "100%",
-          maxWidth: "300px",
+          maxWidth: "350px",
           margin: "0 auto",
           marginTop: "2rem",
         }}
-        text="Continue ⊂(・ヮ・⊂)"
+        text="Continuar ⊂(・ヮ・⊂)"
         onClick={nextQuestion}
       />
     </Layout>
